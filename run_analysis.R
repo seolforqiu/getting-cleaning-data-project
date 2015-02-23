@@ -53,7 +53,7 @@ testselected$dataset <- 1
 dataset <- rbind(trainselected,testselected)
 dataset$dataset <- factor(dataset$dataset, c(0,1), c("train","test"))
 
-## melt the data
+## melt the dataset
 Molten <- melt(dataset, id = c("subject", "activity"), measure.vars=selectedfeatures)
 
 # create the second dataset to get the mean value for each activity and subject
