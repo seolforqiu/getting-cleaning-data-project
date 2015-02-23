@@ -3,14 +3,15 @@ library(Hmisc)
 library(plyr)
 library(dplyr)
 
-## import data.frame of the train and test data sets
-setwd("./Google Drive/Course/Data Science/GetClnData")
+## import data.frames to build the train and test data sets
+## setwd("./Google Drive/Course/Data Science/GetClnData")
 train <- read.table("./UCI HAR Dataset/train/X_train.txt")
 train_y <- read.table("./UCI HAR Dataset/train/y_train.txt")
 test <- read.table("./UCI HAR Dataset/test/X_test.txt")
 test_y <- read.table("./UCI HAR Dataset/test/y_test.txt")
 features <- read.table("./UCI HAR Dataset/features.txt")
 
+## extract information of subjects for train and test sets
 subtrain <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 subtest <- read.table("./UCI HAR Dataset/test/subject_test.txt")
 
@@ -29,10 +30,9 @@ selectedfeatures <- as.vector(selectedfeatures$V2)
 trainselected <- train[,selectedfeatures]
 testselected <- test[,selectedfeatures]
 
-## bind the subject and activity info to the data.frame
+## bind the subject and activity info to the data.frame as new column to the left
 trainselected <- cbind(train_y, trainselected)
 testselected <- cbind(test_y, testselected)
-
 
 ## use descriptive names for marking activities
 level <- c("WALKING","WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS","SITTING","STANDING","LAYING")
@@ -60,6 +60,8 @@ dataset$dataset <- factor(dataset$dataset, c(0,1), c("train","test"))
 ## melt the dataset and use subject and activity as id's
 Molten <- melt(dataset, id = c("subject", "activity"), measure.vars=selectedfeatures)
 
-# create the second dataset to get the mean value for each activity and subject
+## create the second dataset to get the mean value for each activity and subject
 dataset2 <- dcast(Molten,subject+activity ~ variable, mean)
+
+## write the new dataset to the new file result.txt
 write.table(dataset2, file="result.txt")
