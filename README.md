@@ -1,5 +1,5 @@
-# getting-cleaning-data-project
-# readme
+# Getting-Cleaning-Data-Project
+# Readme
 
 ## Introduction
 
