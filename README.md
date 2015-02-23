@@ -1,12 +1,12 @@
 # getting-cleaning-data-project
 ## readme
 
-Introduction
-#######################################################
+## Introduction
+///////////////////////////////////////////////////////////////////////
 My code and data have been put into this repository. They are for the project of the course of "Getting and Cleaning Data".
 
-Raw data
-#######################################################
+## Raw data
+///////////////////////////////////////////////////////////////////////
 Test Set: 
 The data of 561 features for different activities and different subjects are stored in the X_test.txt. 
 The activity labels are in the y_test.txt file.
@@ -17,8 +17,8 @@ The data of 561 features for different activities and different subjects are sto
 The activity labels are in the y_train.txt file.
 The test subjects label are in the subject_train.txt file.
 
-Code and result dataset
-#######################################################
+## Code and result dataset
+///////////////////////////////////////////////////////////////////////
 Please extract the zip file downloaded from the given link at course website to the main working directory.
 
 The extracted "UCI HAR Dataset" folder should be in the same folder as the code. 
