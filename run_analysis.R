@@ -21,6 +21,9 @@ colnames(test) <- features$V2
 ## row indices containing mean() or std() in features
 indices <- c(1:6,41:46, 81:86,121:126,161:166,201:202,214:215,227:228,240:241,253:254,266:271,
              345:350, 424:429, 503:504, 516:517, 529:530, 542:543)
+             
+## use indices to select the columns with mean() or std() and use them to build two new datasets as
+##  trainselected and test selected          
 selectedfeatures <- features[indices,]
 selectedfeatures <- as.vector(selectedfeatures$V2)
 trainselected <- train[,selectedfeatures]
@@ -40,16 +43,17 @@ testselected$V1 <- factor(testselected$V1, 1:6, level)
 names(trainselected)[1]<-paste("activity")
 names(testselected)[1]<-paste("activity")
 
-## add subject info
+## add subject info as a new column on the left
 trainselected <- cbind(subtrain, trainselected)
 testselected <- cbind(subtest, testselected)
 
+## change the newly added column name to subject
 names(trainselected)[1]<-paste("subject")
 names(testselected)[1]<-paste("subject")
 
 ## create the 1st dataset
-trainselected$dataset <- 0
-testselected$dataset <- 1
+trainselected$dataset <- 0 ## 0 as train set
+testselected$dataset <- 1 ## 1 as test set
 dataset <- rbind(trainselected,testselected)
 dataset$dataset <- factor(dataset$dataset, c(0,1), c("train","test"))
 
